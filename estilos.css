@@ -1,0 +1,542 @@
+/* Fondo y fuente general */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: rgba(255, 255, 255, 0.541);
+  /* Fallback si el video no carga */
+  text-align: center;
+  color: #fff;
+  /* Color claro para buen contraste con el video */
+}
+
+html {
+      scroll-behavior: smooth;
+    }
+
+    #mensajeExito {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #d4edda;
+      color: #155724;
+      border-left: 5px solid #28a745;
+      border-radius: 4px;
+    }
+
+    #galeriaFotos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
+    #galeriaFotos img,
+    #galeriaFotos video {
+      max-width: 220px;
+      max-height: 160px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    #lightboxOverlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      cursor: pointer;
+    }
+
+    #lightboxOverlay img,
+    #lightboxOverlay video {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #ffeea5;
+    }
+#logo-izq,
+#logo-der {
+  position: fixed;
+  top: 0;
+  width: 160px;
+  height: 100vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.3;
+  /* mismo nivel para ambos */
+  pointer-events: none;
+  z-index: -1;
+}
+
+#logo-izq {
+  left: 0;
+  background-image: url("Logo izq.jpg");
+}
+
+#logo-der {
+  right: 0;
+  background-image: url("Logo der.jpg");
+}
+
+/* Video de fondo */
+#videoFondo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  z-index: -2;
+  filter: brightness(0.65);
+
+}
+
+/* Capa para oscurecer ligeramente el video y mejorar legibilidad */
+.capa-fondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+/* Sombra para que los textos sean más legibles sobre el video */
+h1,
+h2,
+h3,
+p,
+label {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+header,
+main,
+footer,
+form,
+#estadoReserva {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(255, 253, 164, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+}
+
+table {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th,
+td {
+  border: 1px solid #000;
+  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
+}
+
+#estadoReserva {
+  display: none;
+  margin: 20px auto;
+  padding: 15px;
+  background: rgba(240, 248, 255, 0.9);
+  border-radius: 8px;
+  border-left: 5px solid #4CAF50;
+  max-width: 600px;
+  text-align: center;
+  color: #000;
+}
+
+section {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(255, 241, 161, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+form,
+#estadoReserva {
+  background: transparent;
+  margin: 0 auto;
+  max-width: 100%;
+  box-shadow: none;
+}
+
+input,
+button {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#pedido {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#pedido form input,
+#pedido form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+#pedido form button {
+  background-color: #4CAF50;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#pedido form button:hover {
+  background-color: #45a049;
+}
+
+form#formReserva small {
+  color: rgba(116, 105, 14, 0.808);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.barra-navegacion {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px 0;
+  margin: 0 auto 20px auto;   /* centrado + espacio abajo */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  align-items: center;
+  max-width: 1000px; /* <- limitar ancho aquí */
+}
+
+.barra-navegacion>a,
+.menu-hover>a {
+  padding: 6px 15px;
+  /* menos padding vertical (antes 8px) */
+  line-height: 1.3;
+  /* un poco más compacto */
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.barra-navegacion>a:hover,
+.menu-hover>a:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.menu-hover {
+  position: relative;
+  display: inline-block;
+  /* solo ancho necesario */
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  min-width: 160px;
+  background-color: rgba(235, 233, 134, 0.3);
+  /* Translúcido */
+  backdrop-filter: blur(6px);
+  /* Difuminado suave */
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  padding: 0;
+}
+
+
+.submenu a {
+  color: #000;
+  padding: 10px 14px;
+  display: block;
+  text-decoration: none;
+  font-weight: normal;
+  background-color: transparent;
+  white-space: nowrap;
+}
+
+.submenu a:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.menu-hover:hover .submenu {
+  display: block;
+}
+
+
+
+/* Galería */
+.galeria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.galeria img,
+.galeria video {
+  max-width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* === AÑADIDO PARA FUNCIONALIDAD DE VENTANAS === */
+
+/* Ocultar todas las secciones por defecto */
+#inicio,
+#fotos,
+#pedido,
+#formReserva,
+#contacto {
+  display: none;
+}
+
+/* Mostrar solo la sección activa (inicio al cargar) */
+#inicio {
+  display: block;
+}
+
+section {
+  transition: opacity 0.4s ease-in-out;
+}
+
+#ejemplosPedido {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card-producto {
+  width: 220px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+}
+
+.card-producto:hover {
+  transform: scale(1.03);
+}
+
+.imagen-placeholder {
+  height: 140px;
+  background: linear-gradient(135deg, #eee, #ddd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.contenido-card {
+  padding: 10px;
+}
+
+.contenido-card h4 {
+  margin: 0 0 5px;
+  font-size: 1.1em;
+  color: #222;
+}
+
+.contenido-card p {
+  margin: 4px 0;
+  font-size: 0.9em;
+  color: #444;
+}
+
+.precio {
+  font-weight: bold;
+  color: #009f4d;
+  font-size: 1em;
+}
+#pedido input[type="file"]::file-selector-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+#pedido input[type="file"]::file-selector-button:hover {
+  background-color: #45a049;
+}
+
+.card-producto {
+  background: rgb(255, 255, 255); /* Fondo semitransparente blanco */
+  backdrop-filter: blur(8px); /* Difumina el fondo detrás para más legibilidad */
+  border-radius: 10px;
+  padding: 15px;
+  color: #fff; /* texto blanco para contraste */
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  position: relative;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.boton-agregar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.boton-agregar:hover {
+  transform: scale(1.2);
+}
+
+.btn-eliminar {
+  background-color: rgba(191, 209, 112, 0); /* fondo negro traslúcido */
+  color: white;                         /* color del emoji */
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-eliminar:hover {
+  background-color: rgba(0, 0, 0, 0.5); /* más visible al pasar el mouse */
+}
+
+.item-carrito input[type="number"] {
+  background-color: transparent;  /* fondo transparente */
+  border: rgb(109, 92, 46);                   /* sin borde */
+  color: rgb(0, 0, 0);         /* color del texto */
+  font-weight: bold;
+  text-align: center;
+  width: 120px;
+  outline: rgb(109, 92, 46);                  /* saca el borde azul al hacer clic */
+}
+
+.item-carrito strong {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 1);
+}
+
+#contador-carrito {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: rgba(221, 81, 81, 0.452);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  display: none;
+}
+.item-carrito .subtotal {
+  margin-left: 20px;
+}
+
+.item-carrito button.btn-eliminar {
+  margin-left: 15px;
+}
+
+.archivo-item {
+  display: flex;
+  align-items: center;
+  margin: 4px 0;
+  padding: 5px 8px;
+  background-color: #aeaf5162;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.eliminar-archivo {
+  margin-left: auto;
+  color: red;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 6px;
+}
